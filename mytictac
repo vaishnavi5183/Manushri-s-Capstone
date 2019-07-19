@@ -1,0 +1,96 @@
+print("Hello! This is a tic tac toe game. It is played by player vs. player.")
+
+print('This is the board in which you must choose to place your x or o.\nIt is labeled from 1 to 9')
+print('''
+      |      |
+  1   |   2  |   3
+      |      |
+--------------------
+      |      |
+  4   |   5  |   6
+      |      |
+--------------------
+      |      |
+  7   |   8  |  9
+      |      |
+''')
+boa = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']
+won = 1
+draw = 0
+run = 2
+player = 1
+gamePlay = run
+
+#works
+def drawBoard(boa):
+    print('     |       |')
+    print(boa[1] + '    |' + boa[2] + '      |' + boa[3])         
+    print('     |       |')
+    print('--------------------')
+    print('     |       |')
+    print(boa[4] + '    |' + boa[5] + '      |' + boa[6])         
+    print('     |       |')
+    print('--------------------')
+    print('     |       |')
+    print(boa[7] + '    |' + boa[8] + '      |' + boa[9])
+    print('     |       |')
+
+#works    
+def checkPosition(x):    
+    if(boa[x] == ' '):    
+        return True    
+    else:    
+        return False
+    
+#This function checks player's winning position
+def checkWinning():
+    global gamePlay
+    if(boa[1]==boa[2] and boa[2]==boa[3] and boa[1]!=' '):#checks across
+       gamePlay = won
+    elif(boa[4]==boa[5] and boa[5]==boa[6] and boa[4]!=' '):#checks across
+            gamePlay = won
+    elif(boa[4]==boa[5] and boa[5]==boa[6] and boa[4]!=' '):#checks across
+            gamePlay = won      
+    elif(boa[1]==boa[4] and boa[4]==boa[7] and boa[1]!=' '):#checks vertical
+       gamePlay = won
+    elif(boa[2]==boa[5] and boa[5]==boa[8] and boa[2]!=' '):#checks vertical
+            gamePlay = won
+    elif(boa[3]==boa[6] and boa[6]==boa[9] and boa[3]!=' '):#checks vertical
+            gamePlay = won      
+    elif(boa[1]==boa[5] and boa[5]==boa[9] and boa[5]!=' '):#checks diagonal
+       gamePlay = won
+    elif(boa[3]==boa[5] and boa[5]==boa[7] and boa[5]!=' '):#checks diagonal
+        gamePlay = won
+    elif(boa[1]!=' ' and boa[2]!=' ' and boa[3]!=' '  and boa[4]!=' 'and boa[5]!=' 'and boa[6]!=' 'and boa[7]!=' 'and boa[8]!=' 'and boa[9]!=' '):
+        gamePlay = draw
+    else:
+        gamePlay = run
+        
+
+while(gamePlay == run):
+        
+         if(player % 2 != 0):
+              print('Player 1, choose where to put your x. (From boxes 1 to 9)')
+              mark = 'x'
+              Choice = int(input())
+         else:
+               print('Player 2, choose where to put your o')
+               mark = 'o'
+               Choice = int(input())  
+         if(checkPosition(Choice)):
+            boa[Choice]=mark
+            drawBoard(boa)
+            player +=1
+            checkWinning()
+        
+
+         if(gamePlay == draw):
+            print('This game resulted in a draw')
+         elif(gamePlay == won):
+                 player-=1
+                 if(player % 2 != 0):
+                         print('Player 1 won!')
+                 else:
+                         print('Player 2 won!')
+
+print('Thanks for playing!')
