@@ -1,3 +1,4 @@
+print('Welcome to tic-tac-toe! Pick your opponent, and good luck!)
 boa = [' ',' ',' ',' ',' ',' ',' ',' ',' ',' ']
 won = 1
 draw = 0
